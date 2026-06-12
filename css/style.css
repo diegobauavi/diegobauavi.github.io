@@ -1,0 +1,266 @@
+:root {
+  --bg: #ffffff;
+  --surface: #f7f8fa;
+  --text: #1c1d21;
+  --text-soft: #54565e;
+  --text-faint: #80828c;
+  --accent: #2d5d8a;
+  --accent-soft: #e7eef5;
+  --border: #e3e5ea;
+  --rule: #1f4e79;
+  --maxw: 820px;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+/* ---------- Header ---------- */
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 0;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+.header-text h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 2.6rem;
+  line-height: 1.1;
+  margin: 0 0 0.3rem;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin: 0 0 0.2rem;
+}
+
+.affiliation {
+  color: var(--text-soft);
+  margin: 0 0 1rem;
+  font-size: 0.98rem;
+}
+
+.contact-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+.contact-links a {
+  font-size: 0.98rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ---------- Sections ---------- */
+main { padding: 1rem 0 2rem; }
+
+section {
+  padding: 2.5rem 0 1rem;
+  border-bottom: 1px solid var(--border);
+}
+section:last-of-type { border-bottom: none; }
+
+h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: var(--rule);
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--rule);
+}
+
+h3 {
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin: 0 0 0.15rem;
+}
+
+.lede {
+  color: var(--text-soft);
+  margin: 1.25rem 0 0;
+}
+
+/* ---------- Research interest tags ---------- */
+.tag-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.tag-list li {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+}
+
+/* ---------- Timeline-style entries ---------- */
+.entry {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+.entry:last-child { margin-bottom: 0; }
+
+.entry-meta {
+  color: var(--text-faint);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding-top: 0.15rem;
+}
+
+.entry-body p {
+  margin: 0.35rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.97rem;
+}
+
+.entry-org {
+  font-style: italic;
+  color: var(--text) !important;
+}
+
+.entry-body em { color: var(--text-soft); }
+
+/* ---------- Publications ---------- */
+.pub-list {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+.pub-list li {
+  margin-bottom: 1rem;
+  color: var(--text-soft);
+  font-size: 0.97rem;
+}
+.pub-list strong { color: var(--text); }
+
+/* ---------- Skills ---------- */
+.skills-list {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0.6rem 1.25rem;
+  margin: 0;
+}
+.skills-list dt {
+  font-weight: 600;
+  color: var(--text);
+}
+.skills-list dd {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  margin-top: 1rem;
+}
+.site-footer p {
+  margin: 0.2rem 0;
+  color: var(--text-faint);
+  font-size: 0.9rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+
+  .header-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.25rem;
+  }
+  .avatar { width: 130px; height: 130px; }
+  .header-text h1 { font-size: 2.1rem; }
+  .contact-links { justify-content: center; }
+
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+  .entry-meta {
+    padding-top: 0;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .skills-list {
+    grid-template-columns: 1fr;
+    gap: 0.2rem 0;
+  }
+  .skills-list dt { margin-top: 0.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
