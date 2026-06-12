@@ -216,6 +216,7 @@ a:hover { text-decoration: underline; }
 }
 
 /* ---------- Section sub-navigation ---------- */
+.subnav[hidden] { display: none; }
 .subnav {
   display: flex;
   flex-wrap: wrap;
