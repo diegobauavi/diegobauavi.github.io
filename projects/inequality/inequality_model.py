@@ -289,15 +289,18 @@ def render_summary(path, runs=60, n=1000, steps=120, seed0=0):
     w = np.sort(sample.wealth_history[-1])
     cum_w = np.cumsum(w) / w.sum()
     cum_p = np.linspace(0, 1, len(w))
-    ax3.plot([0, 1], [0, 1], color=MUTED, linewidth=1.3, linestyle="--")
-    ax3.plot(cum_p, cum_w, color=AMBER, linewidth=2.8)
-    ax3.fill_between(cum_p, cum_p, cum_w, color=AMBER, alpha=0.18)
+    ax3.plot([0, 1], [0, 1], color=MUTED, linewidth=1.3, linestyle="--",
+             label="perfect equality")
+    ax3.plot(cum_p, cum_w, color=AMBER, linewidth=2.8, label="actual (one run)")
+    ax3.fill_between(cum_p, cum_p, cum_w, color=AMBER, alpha=0.18,
+                     label="gap from equality")
     ax3.set_xlim(0, 1)
     ax3.set_ylim(0, 1)
     ax3.set_xlabel("share of people")
     ax3.set_ylabel("share of wealth")
-    ax3.set_title(f"Lorenz curve  (Gini = {sample.gini_history[-1]:.2f})",
+    ax3.set_title(f"Lorenz curve  (Gini = 2 × shaded area = {sample.gini_history[-1]:.2f})",
                   loc="left", fontsize=12.5, fontweight="bold")
+    ax3.legend(loc="upper left", fontsize=9, framealpha=0, labelcolor=INK)
     ax3.grid(True, alpha=0.25, linewidth=0.6)
 
     fig.suptitle("Same rules, sixty runs: the pattern is the rule, not the exception",

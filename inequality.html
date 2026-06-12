@@ -12,112 +12,180 @@
   <script>
     (function () {
       try {
-        var saved = localStorage.getItem("theme");
-        var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        document.documentElement.setAttribute("data-theme", theme);
+        var t = localStorage.getItem("theme") ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", t);
+        var l = localStorage.getItem("lang") ||
+          ((navigator.language || "en").slice(0, 2) === "es" ? "es" : "en");
+        document.documentElement.setAttribute("data-lang", l);
+        document.documentElement.setAttribute("lang", l);
       } catch (e) {}
     })();
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main"><span class="lang-en">Skip to content</span><span class="lang-es">Saltar al contenido</span></a>
 
   <div class="topbar">
     <div class="container topbar-inner">
       <a class="back-link" href="index.html#personal">← Diego Bautista Avilés</a>
-      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Toggle dark / light mode">
-        <span class="theme-icon" aria-hidden="true"></span>
-      </button>
+      <div class="header-controls">
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language / Cambiar idioma">
+          <span class="lang-en">ES</span><span class="lang-es">EN</span>
+        </button>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark / light mode" title="Toggle dark / light mode">
+          <span class="theme-icon" aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
   </div>
 
   <main id="main" class="container article">
 
-    <p class="eyebrow">Personal project</p>
-    <h1 class="article-title">Compounding and inequality</h1>
-    <p class="article-sub">A very cheap model, and the thing it kept telling me.</p>
+    <p class="eyebrow"><span class="lang-en">Personal project</span><span class="lang-es">Proyecto personal</span></p>
+    <h1 class="article-title"><span class="lang-en">Compounding and inequality</span><span class="lang-es">El interés compuesto y la desigualdad</span></h1>
+    <p class="article-sub"><span class="lang-en">A very cheap model, and the thing it kept telling me.</span><span class="lang-es">Un modelo muy barato, y lo que no dejaba de decirme.</span></p>
 
-    <p>
+    <p class="lang-en">
       A while ago I got stuck on a simple question. If everyone starts with the same
       amount of money, and the only thing that separates people is a bit of luck or
       skill that gets handed out fresh every few years, how unequal can a society
       really become? The honest answer surprised me. Very unequal, and fast.
     </p>
-    <p>
+    <p class="lang-es">
+      Hace un tiempo me quedé atascado en una pregunta sencilla. Si todos parten con la
+      misma cantidad de dinero, y lo único que separa a las personas es un poco de suerte
+      o habilidad que se reparte de nuevo cada pocos años, ¿qué tan desigual puede llegar
+      a ser una sociedad? La respuesta honesta me sorprendió. Muy desigual, y rápido.
+    </p>
+    <p class="lang-en">
       The story we usually tell is that wealth tracks merit. Work hard, do well, end
       up ahead. I wanted to see what the arithmetic says when you strip almost
       everything else away and keep only one ingredient: money grows in proportion to
       how much you already have.
     </p>
+    <p class="lang-es">
+      La historia que solemos contar es que la riqueza sigue al mérito. Esfuérzate, hazlo
+      bien, termina por delante. Quería ver qué dice la aritmética cuando quitas casi todo
+      lo demás y dejas un solo ingrediente: el dinero crece en proporción a lo que ya
+      tienes.
+    </p>
 
-    <h2>The setup fits on a napkin</h2>
-    <p>
+    <h2><span class="lang-en">The setup fits on a napkin</span><span class="lang-es">El planteamiento cabe en una servilleta</span></h2>
+    <p class="lang-en">
       A thousand people, everyone holding one coin. Each round a person's wealth is
       multiplied by (1 + t), where t is their return for that round, drawn from a
       normal distribution centered on a small positive number. Most people grow a
       little, some grow a lot, a few shrink. Every five rounds I throw all the values
       of t back in a hat and deal them out again, so nobody keeps a permanent edge.
     </p>
-    <p>
+    <p class="lang-es">
+      Mil personas, cada una con una moneda. En cada ronda la riqueza de una persona se
+      multiplica por (1 + t), donde t es su rendimiento de esa ronda, sacado de una
+      distribución normal centrada en un número positivo pequeño. La mayoría crece un
+      poco, algunos crecen mucho, unos pocos encogen. Cada cinco rondas echo todos los
+      valores de t de vuelta a un sombrero y los reparto otra vez, así que nadie conserva
+      una ventaja permanente.
+    </p>
+    <p class="lang-en">
       That last part is the one I care about. It is my crude way of saying that talent
       and luck reset between generations. The person who drew well this decade does not
       get to keep that draw forever. If meritocracy were the whole story, resetting the
       advantage so often should keep things reasonably fair.
     </p>
+    <p class="lang-es">
+      Esa última parte es la que me importa. Es mi forma tosca de decir que el talento y
+      la suerte se reinician entre generaciones. Quien sacó un buen número esta década no
+      se lo queda para siempre. Si la meritocracia fuera toda la historia, reiniciar la
+      ventaja tan seguido debería mantener las cosas razonablemente justas.
+    </p>
 
-    <div class="formula" role="img" aria-label="Wealth at the next round equals current wealth times one plus t, where t is drawn from a normal distribution with mean mu and spread sigma, and t is reshuffled every five rounds.">
+    <div class="formula">
       W<sub>n+1</sub> = W<sub>n</sub> · (1 + t),
       &nbsp;&nbsp; t ~ Normal(μ, σ),
-      &nbsp;&nbsp; reshuffled every 5 rounds
+      &nbsp;&nbsp; <span class="lang-en">reshuffled every 5 rounds</span><span class="lang-es">repartido de nuevo cada 5 rondas</span>
     </div>
 
-    <h2>Watch it run</h2>
+    <h2><span class="lang-en">Watch it run</span><span class="lang-es">Míralo correr</span></h2>
     <figure class="media">
       <video controls autoplay muted loop playsinline poster="assets/inequality/poster.png">
         <source src="assets/inequality/wealth_animation.mp4" type="video/mp4" />
-        Your browser does not support the video tag. You can view the still frame above.
+        <span class="lang-en">Your browser does not support the video tag. You can view the still frame above.</span>
+        <span class="lang-es">Tu navegador no soporta el video. Puedes ver la imagen fija de arriba.</span>
       </video>
       <figcaption>
-        One run of the model over 120 rounds. Top: where everyone sits on a log wealth
+        <span class="lang-en">One run of the model over 120 rounds. Top: where everyone sits on a log wealth
         axis, so each step to the right means ten times richer. Bottom left: the Gini
-        coefficient. Bottom right: how well current skill predicts current wealth.
+        coefficient. Bottom right: how well current skill predicts current wealth.</span>
+        <span class="lang-es">Una corrida del modelo a lo largo de 120 rondas. Arriba: dónde se ubica cada quien
+        en un eje de riqueza logarítmico, donde cada paso a la derecha significa diez veces
+        más rico. Abajo a la izquierda: el coeficiente de Gini. Abajo a la derecha: qué tan
+        bien la habilidad actual predice la riqueza actual.</span>
       </figcaption>
     </figure>
 
-    <p>
+    <p class="lang-en">
       The top panel starts as a single spike, everyone equal, and then it spreads and
       keeps spreading. By the end the distance between the poorest and the richest is
       several orders of magnitude, and remember that axis is already logarithmic.
     </p>
-    <p>
+    <p class="lang-es">
+      El panel de arriba empieza como un solo pico, todos iguales, y luego se dispersa y
+      sigue dispersándose. Al final la distancia entre el más pobre y el más rico es de
+      varios órdenes de magnitud, y recuerda que ese eje ya es logarítmico.
+    </p>
+    <p class="lang-en">
       The bottom left tracks the Gini coefficient, the usual one number summary of
       inequality. Zero means everyone holds the same, one means a single person holds
       everything. It climbs past 0.8 and keeps going. For comparison, the most unequal
       countries on the planet sit around 0.6.
     </p>
-    <p>
+    <p class="lang-es">
+      Abajo a la izquierda va el coeficiente de Gini, el resumen habitual de la desigualdad
+      en un solo número. Cero significa que todos tienen lo mismo, uno significa que una
+      sola persona lo tiene todo. Sube más allá de 0.8 y sigue subiendo. Para comparar, los
+      países más desiguales del planeta rondan el 0.6.
+    </p>
+    <p class="lang-en">
       The bottom right is the panel I find hardest to argue with. It asks whether your
       skill this round explains your wealth. After every reshuffle it jumps back up,
       because the fresh draw briefly matters, and then it falls almost to the floor.
       The people at the top are rarely the ones with the best current skill. They are
       the ones who caught a good draw early and let compounding carry it.
     </p>
+    <p class="lang-es">
+      Abajo a la derecha está el panel que me cuesta más rebatir. Pregunta si tu habilidad
+      de esta ronda explica tu riqueza. Después de cada reparto vuelve a subir, porque el
+      nuevo sorteo importa por un momento, y luego cae casi hasta el suelo. Las personas de
+      arriba rara vez son las de mejor habilidad actual. Son las que pescaron un buen número
+      temprano y dejaron que el interés compuesto hiciera el resto.
+    </p>
 
-    <h2>It happens every time</h2>
-    <p>
+    <h2><span class="lang-en">It happens every time</span><span class="lang-es">Pasa siempre</span></h2>
+    <p class="lang-en">
       One run could be a fluke, so I ran sixty of them with different random seeds and
       averaged the result. The shaded bands show the full spread across runs. Inequality
       climbs in all of them, the skill signal decays in all of them, and the final
       Lorenz curve bows away from the line of equality in a way that should feel
       familiar to anyone who has seen real wealth data.
     </p>
+    <p class="lang-es">
+      Una sola corrida podría ser casualidad, así que hice sesenta con distintas semillas
+      aleatorias y promedié el resultado. Las bandas sombreadas muestran toda la dispersión
+      entre corridas. La desigualdad sube en todas, la señal de la habilidad se desvanece en
+      todas, y la curva de Lorenz final se aleja de la línea de igualdad de una manera que le
+      resultará familiar a cualquiera que haya visto datos reales de riqueza.
+    </p>
     <figure class="media">
       <img src="assets/inequality/summary.png" alt="Three panels across sixty runs: the Gini coefficient rising toward 0.9 in every run, the skill-to-wealth correlation decaying toward zero, and a Lorenz curve bowing far below the line of equality with a Gini of 0.88." />
-      <figcaption>Sixty runs of the same rules. The pattern is the rule, not the exception.</figcaption>
+      <figcaption>
+        <span class="lang-en">Sixty runs of the same rules. The pattern is the rule, not the exception. On the Lorenz curve, the shaded area is the gap from perfect equality, and the Gini is twice that area.</span>
+        <span class="lang-es">Sesenta corridas con las mismas reglas. El patrón es la regla, no la excepción. En la curva de Lorenz, el área sombreada es la brecha respecto a la igualdad perfecta, y el Gini es el doble de esa área.</span>
+      </figcaption>
     </figure>
 
-    <h2>What I take from it</h2>
-    <p>
+    <h2><span class="lang-en">What I take from it</span><span class="lang-es">Lo que me llevo de esto</span></h2>
+    <p class="lang-en">
       I am not claiming this proves anything about the real world on its own. It is a
       toy, and a cheap one. Real economies have wages, taxes, debt, inheritance,
       crashes, and a hundred things this model leaves out. What it does well is smaller
@@ -126,7 +194,16 @@
       start. Equal beginnings, fair and temporary advantages, and a single rule about
       compounding are enough to do the whole job.
     </p>
-    <p>
+    <p class="lang-es">
+      No estoy diciendo que esto pruebe nada sobre el mundo real por sí solo. Es un juguete,
+      y barato. Las economías reales tienen salarios, impuestos, deuda, herencias, crisis y
+      cien cosas que este modelo deja fuera. Lo que hace bien es algo más pequeño y más
+      afilado. Muestra que puedes fabricar desigualdad extrema sin ninguno de los villanos de
+      siempre. Sin corrupción, sin trampas, sin dinastías, sin una ventaja inicial injusta.
+      Comienzos iguales, ventajas justas y temporales, y una sola regla sobre el interés
+      compuesto bastan para hacer todo el trabajo.
+    </p>
+    <p class="lang-en">
       So when someone tells me the people at the top must have earned their place, I now
       keep a small and stubborn counterexample in my pocket. In this little world they
       did nothing wrong and nothing special. The mathematics of growth handed them the
@@ -134,10 +211,20 @@
       something has to push back on the compounding on purpose. How much pushing, and
       what kind, is the question I want to carry into the next version of the model.
     </p>
+    <p class="lang-es">
+      Así que cuando alguien me dice que los de arriba seguro se ganaron su lugar, ahora
+      guardo un contraejemplo pequeño y terco en el bolsillo. En este mundito no hicieron
+      nada malo ni nada especial. La matemática del crecimiento les dio la delantera, y la
+      misma matemática los mantuvo ahí. Si queremos un final distinto, algo tiene que frenar
+      el interés compuesto a propósito. Cuánto frenar, y de qué tipo, es la pregunta que
+      quiero llevar a la siguiente versión del modelo.
+    </p>
 
     <p class="code-note">
-      The whole thing is one Python file. You can read the model, the animation, and
-      the figures in
+      <span class="lang-en">The whole thing is one Python file. You can read the model, the animation, and
+      the figures in</span>
+      <span class="lang-es">Todo es un solo archivo de Python. Puedes leer el modelo, la animación y las
+      figuras en</span>
       <a href="https://github.com/diegobauavi/diegobauavi.github.io/blob/main/projects/inequality/inequality_model.py" target="_blank" rel="noopener">inequality_model.py</a>.
     </p>
 
@@ -146,7 +233,7 @@
   <footer class="site-footer">
     <div class="container">
       <p>© <span id="year">2026</span> Diego Bautista Avilés</p>
-      <p><a href="index.html#personal">← Back to personal</a></p>
+      <p><a href="index.html#personal"><span class="lang-en">← Back to personal</span><span class="lang-es">← Volver a personal</span></a></p>
     </div>
   </footer>
 

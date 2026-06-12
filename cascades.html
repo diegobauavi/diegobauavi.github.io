@@ -12,89 +12,135 @@
   <script>
     (function () {
       try {
-        var saved = localStorage.getItem("theme");
-        var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        document.documentElement.setAttribute("data-theme", theme);
+        var t = localStorage.getItem("theme") ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", t);
+        var l = localStorage.getItem("lang") ||
+          ((navigator.language || "en").slice(0, 2) === "es" ? "es" : "en");
+        document.documentElement.setAttribute("data-lang", l);
+        document.documentElement.setAttribute("lang", l);
       } catch (e) {}
     })();
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main"><span class="lang-en">Skip to content</span><span class="lang-es">Saltar al contenido</span></a>
 
   <div class="topbar">
     <div class="container topbar-inner">
       <a class="back-link" href="index.html#personal">← Diego Bautista Avilés</a>
-      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Toggle dark / light mode">
-        <span class="theme-icon" aria-hidden="true"></span>
-      </button>
+      <div class="header-controls">
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language / Cambiar idioma">
+          <span class="lang-en">ES</span><span class="lang-es">EN</span>
+        </button>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark / light mode" title="Toggle dark / light mode">
+          <span class="theme-icon" aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
   </div>
 
   <main id="main" class="container article">
 
-    <p class="eyebrow">Personal project</p>
-    <h1 class="article-title">How many people does it take to move the world?</h1>
-    <p class="article-sub">A threshold model, and the tipping points hiding in it.</p>
+    <p class="eyebrow"><span class="lang-en">Personal project</span><span class="lang-es">Proyecto personal</span></p>
+    <h1 class="article-title"><span class="lang-en">How many people does it take to move the world?</span><span class="lang-es">¿Cuánta gente hace falta para mover el mundo?</span></h1>
+    <p class="article-sub"><span class="lang-en">A threshold model, and the tipping points hiding in it.</span><span class="lang-es">Un modelo de umbral, y los puntos de inflexión que esconde.</span></p>
 
-    <p>
+    <p class="lang-en">
       Here is a question I keep coming back to. When a movement, a fashion, a protest,
       or a rumor sweeps through a group of people, how much of it is the message itself
       and how much is just the structure of who listens to whom? I wanted a setup simple
       enough that I could watch the gears turn.
     </p>
-    <p>
+    <p class="lang-es">
+      Hay una pregunta a la que vuelvo una y otra vez. Cuando un movimiento, una moda, una
+      protesta o un rumor recorre a un grupo de personas, ¿cuánto es el mensaje en sí y
+      cuánto es solo la estructura de quién escucha a quién? Quería un montaje lo bastante
+      simple como para ver girar los engranajes.
+    </p>
+    <p class="lang-en">
       Mark Granovetter wrote down a clean version of this in the seventies. Give every
       person a threshold, the share of the people around them who have to act before they
       will act too. Some people move on almost no signal. Others hold out until nearly
       everyone they know has already moved. Start with a small committed group, then let
       everyone else look around and decide, round after round.
     </p>
+    <p class="lang-es">
+      Mark Granovetter escribió una versión limpia de esto en los años setenta. Dale a cada
+      persona un umbral, la proporción de la gente a su alrededor que tiene que actuar antes
+      de que ella también actúe. Algunas se mueven con casi ninguna señal. Otras aguantan
+      hasta que casi todos los que conocen ya se movieron. Empieza con un grupo pequeño y
+      comprometido, y deja que el resto mire alrededor y decida, ronda tras ronda.
+    </p>
 
-    <h2>The setup</h2>
-    <p>
+    <h2><span class="lang-en">The setup</span><span class="lang-es">El montaje</span></h2>
+    <p class="lang-en">
       I put a hundred and forty people on a small-world network, the kind where most of
       your ties are local but a few jump clear across the graph. Each person gets a
       threshold drawn from a normal distribution. A small committed minority starts
       active. On every round, anyone who sees enough active neighbors flips, and once
       someone flips they stay.
     </p>
+    <p class="lang-es">
+      Puse a ciento cuarenta personas en una red de mundo pequeño, de esas donde la mayoría
+      de tus lazos son locales pero unos pocos saltan al otro lado del grafo. Cada persona
+      recibe un umbral sacado de una distribución normal. Una pequeña minoría comprometida
+      empieza activa. En cada ronda, quien ve suficientes vecinos activos cambia, y una vez
+      que alguien cambia, se queda.
+    </p>
 
-    <div class="formula" role="img" aria-label="Person i acts when the share of their active neighbors is greater than or equal to that person's threshold.">
-      person <em>i</em> acts when&nbsp;&nbsp;
-      (active neighbors / all neighbors) ≥ threshold<sub>i</sub>
+    <div class="formula">
+      <span class="lang-en">person <em>i</em> acts when</span><span class="lang-es">la persona <em>i</em> actúa cuando</span>&nbsp;&nbsp;
+      (<span class="lang-en">active neighbors / all neighbors</span><span class="lang-es">vecinos activos / todos los vecinos</span>) ≥ <span class="lang-en">threshold</span><span class="lang-es">umbral</span><sub>i</sub>
     </div>
 
-    <h2>Watch one run</h2>
+    <h2><span class="lang-en">Watch one run</span><span class="lang-es">Mira una corrida</span></h2>
     <figure class="media">
       <video controls autoplay muted loop playsinline poster="assets/cascades/poster.png">
         <source src="assets/cascades/cascade_animation.mp4" type="video/mp4" />
-        Your browser does not support the video tag. You can view the still frame above.
+        <span class="lang-en">Your browser does not support the video tag. You can view the still frame above.</span>
+        <span class="lang-es">Tu navegador no soporta el video. Puedes ver la imagen fija de arriba.</span>
       </video>
       <figcaption>
-        One cascade over nine rounds. Blue dots are people who have not moved yet, shaded
+        <span class="lang-en">One cascade over nine rounds. Blue dots are people who have not moved yet, shaded
         by how stubborn they are. Amber dots have moved. The line below tracks the share
-        of the network that has joined.
+        of the network that has joined.</span>
+        <span class="lang-es">Una cascada a lo largo de nueve rondas. Los puntos azules son personas que todavía
+        no se mueven, sombreadas según qué tan tercas son. Los puntos ámbar ya se movieron.
+        La línea de abajo sigue la proporción de la red que se ha sumado.</span>
       </figcaption>
     </figure>
 
-    <p>
+    <p class="lang-en">
       Nothing much happens for a moment, then a few easy to move people flip, which pushes
       their neighbors over the line, which pushes the next ring, and the whole thing tips
       over in a handful of rounds. The curve at the bottom has the shape you would expect
       from that. A slow start, a steep middle, a plateau.
     </p>
+    <p class="lang-es">
+      Por un momento no pasa gran cosa, luego unas pocas personas fáciles de mover cambian,
+      lo que empuja a sus vecinos sobre la línea, lo que empuja al siguiente anillo, y todo
+      se vuelca en un puñado de rondas. La curva de abajo tiene la forma que esperarías de
+      eso. Un arranque lento, una parte central empinada, una meseta.
+    </p>
 
-    <h2>The tipping points</h2>
-    <p>
+    <h2><span class="lang-en">The tipping points</span><span class="lang-es">Los puntos de inflexión</span></h2>
+    <p class="lang-en">
       The part I find genuinely surprising shows up when you run the model many times and
       turn one knob at a time.
     </p>
+    <p class="lang-es">
+      La parte que me parece de verdad sorprendente aparece cuando corres el modelo muchas
+      veces y mueves una perilla a la vez.
+    </p>
     <figure class="media">
       <img src="assets/cascades/tipping_points.png" alt="Two panels. Left: final adoption stays near 100% as the average threshold rises, then drops off a cliff past about 30%. Right: final adoption rises through the 3.5% committed-minority mark and saturates near 100% by roughly 8%." />
-      <figcaption>Each point averages forty runs. Left: the effect of how stubborn people are on average. Right: the effect of how large the committed minority is at the start.</figcaption>
+      <figcaption>
+        <span class="lang-en">Each point averages forty runs. Left: the effect of how stubborn people are on average. Right: the effect of how large the committed minority is at the start.</span>
+        <span class="lang-es">Cada punto promedia cuarenta corridas. Izquierda: el efecto de qué tan tercas son las personas en promedio. Derecha: el efecto de qué tan grande es la minoría comprometida al inicio.</span>
+      </figcaption>
     </figure>
-    <p>
+    <p class="lang-en">
       On the left, average stubbornness barely matters until it crosses a line, and then
       the outcome falls off a cliff. A population that is a little too cautious on average
       ends up going almost nowhere, even though no single person is behaving unreasonably.
@@ -104,9 +150,20 @@
       the so-called 3.5% rule, the rough share of a population that seems to be enough to
       force large scale change.
     </p>
+    <p class="lang-es">
+      A la izquierda, la terquedad promedio casi no importa hasta que cruza una línea, y
+      entonces el resultado se cae por un precipicio. Una población un poco demasiado
+      cautelosa en promedio termina por no llegar casi a ningún lado, aunque ninguna persona
+      en particular se esté portando de forma irrazonable. A la derecha aparece el mismo tipo
+      de borde para el tamaño del grupo inicial. Por debajo de unos pocos por ciento el
+      empujón se apaga. Por encima, toda la red termina moviéndose. El cruce queda cerca de
+      una cifra que aparece una y otra vez en estudios de campañas reales, la llamada regla
+      del 3.5%, la proporción aproximada de una población que parece bastar para forzar un
+      cambio a gran escala.
+    </p>
 
-    <h2>What I take from it</h2>
-    <p>
+    <h2><span class="lang-en">What I take from it</span><span class="lang-es">Lo que me llevo de esto</span></h2>
+    <p class="lang-en">
       This is a toy, same caveat as always. Real people do not carry one tidy number in
       their heads, and real networks are messier than anything I drew here. The lesson
       still travels. Big collective shifts do not need most people to be convinced. They
@@ -114,16 +171,33 @@
       everyone else. The same arithmetic that makes change feel hopeless one day can make
       it feel inevitable the next, and the gap between those two days can be very small.
     </p>
-    <p>
+    <p class="lang-es">
+      Es un juguete, la misma advertencia de siempre. Las personas reales no llevan un número
+      ordenado en la cabeza, y las redes reales son más enredadas que cualquier cosa que
+      dibujé aquí. La lección igual viaja. Los grandes cambios colectivos no necesitan que la
+      mayoría esté convencida. Necesitan una estructura que deje a unos pocos comprometidos
+      llegar a los fáciles de mover, que luego llegan a todos los demás. La misma aritmética
+      que un día hace que el cambio se sienta imposible puede al día siguiente hacerlo sentir
+      inevitable, y la distancia entre esos dos días puede ser muy pequeña.
+    </p>
+    <p class="lang-en">
       It also gives me a gentler way to read history. The people who moved first were not
       always braver or smarter. They were the ones with low thresholds and the right
       neighbors. The rest were waiting for a signal that, for a long while, simply had not
       arrived.
     </p>
+    <p class="lang-es">
+      También me da una forma más amable de leer la historia. Los que se movieron primero no
+      siempre fueron más valientes ni más listos. Fueron los que tenían umbrales bajos y los
+      vecinos correctos. Los demás esperaban una señal que, por mucho tiempo, simplemente no
+      había llegado.
+    </p>
 
     <p class="code-note">
-      The whole thing is one Python file. You can read the model, the animation, and the
-      tipping curves in
+      <span class="lang-en">The whole thing is one Python file. You can read the model, the animation, and the
+      tipping curves in</span>
+      <span class="lang-es">Todo es un solo archivo de Python. Puedes leer el modelo, la animación y las curvas
+      de inflexión en</span>
       <a href="https://github.com/diegobauavi/diegobauavi.github.io/blob/main/projects/cascades/cascade_model.py" target="_blank" rel="noopener">cascade_model.py</a>.
     </p>
 
@@ -132,7 +206,7 @@
   <footer class="site-footer">
     <div class="container">
       <p>© <span id="year">2026</span> Diego Bautista Avilés</p>
-      <p><a href="index.html#personal">← Back to personal</a></p>
+      <p><a href="index.html#personal"><span class="lang-en">← Back to personal</span><span class="lang-es">← Volver a personal</span></a></p>
     </div>
   </footer>
 
