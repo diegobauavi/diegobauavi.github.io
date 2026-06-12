@@ -8,9 +8,25 @@
   --accent-soft: #e7eef5;
   --border: #e3e5ea;
   --rule: #1f4e79;
+  --card-bg: #ffffff;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
   --maxw: 820px;
   --serif: "Newsreader", Georgia, "Times New Roman", serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg: #14151a;
+  --surface: #1b1d24;
+  --text: #e9eaee;
+  --text-soft: #b3b6c0;
+  --text-faint: #888b96;
+  --accent: #7fb1de;
+  --accent-soft: #233244;
+  --border: #2a2d36;
+  --rule: #7fb1de;
+  --card-bg: #1b1d24;
+  --shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
 }
 
 * { box-sizing: border-box; }
@@ -26,6 +42,7 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .container {
@@ -63,6 +80,7 @@ a:hover { text-decoration: underline; }
   display: flex;
   align-items: center;
   gap: 2rem;
+  position: relative;
 }
 
 .avatar {
@@ -71,8 +89,8 @@ a:hover { text-decoration: underline; }
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  border: 3px solid #fff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  border: 3px solid var(--bg);
+  box-shadow: var(--shadow);
 }
 
 .header-text h1 {
@@ -111,6 +129,63 @@ a:hover { text-decoration: underline; }
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+}
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.theme-toggle:hover { border-color: var(--accent); }
+
+.theme-icon { font-size: 1.15rem; line-height: 1; }
+.theme-icon::before { content: "🌙"; }
+[data-theme="dark"] .theme-icon::before { content: "☀"; }
+
+/* ---------- View tabs ---------- */
+.view-nav {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.view-tabs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+}
+
+.view-tab {
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.view-tab:hover { color: var(--text); background: var(--surface); }
+.view-tab[aria-selected="true"] {
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 600;
 }
 
 /* ---------- Sections ---------- */
@@ -218,6 +293,48 @@ h3 {
   color: var(--text-soft);
 }
 
+/* ---------- Personal view: project cards ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.project-card {
+  display: block;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+a.project-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.project-card h3 { margin: 0 0 0.4rem; }
+.project-card p {
+  margin: 0 0 1rem;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.card-link {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.92rem;
+}
+.card-link--muted { color: var(--text-faint); }
+
+.project-card--soon {
+  border-style: dashed;
+  opacity: 0.85;
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   background: var(--surface);
@@ -244,6 +361,8 @@ h3 {
   .header-text h1 { font-size: 2.1rem; }
   .contact-links { justify-content: center; }
 
+  .theme-toggle { top: -0.5rem; right: 0; }
+
   .entry {
     grid-template-columns: 1fr;
     gap: 0.25rem;
@@ -263,4 +382,5 @@ h3 {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  * { transition: none !important; }
 }
