@@ -248,17 +248,22 @@ def render_summary(path, runs=40, n=140):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5))
     fig.subplots_adjust(left=0.07, right=0.97, top=0.80, bottom=0.15, wspace=0.24)
 
-    ax1.fill_between(thr_grid * 100, a_lo, a_hi, color=BLUE, alpha=0.15)
-    ax1.plot(thr_grid * 100, a_mean, color=BLUE, linewidth=2.8)
+    ax1.fill_between(thr_grid * 100, a_lo, a_hi, color=BLUE, alpha=0.15,
+                     label=f"range across {runs} runs")
+    ax1.plot(thr_grid * 100, a_mean, color=BLUE, linewidth=2.8,
+             label=f"average of {runs} runs")
     ax1.set_xlabel("average threshold  (how stubborn people are)")
     ax1.set_ylabel("% of network that ends up moving")
     ax1.set_ylim(0, 103)
     ax1.set_title("Stubbornness has a tipping point", loc="left",
                   fontsize=13, fontweight="bold")
+    ax1.legend(loc="lower left", fontsize=9, framealpha=0, labelcolor=INK)
     ax1.grid(True, alpha=0.25, linewidth=0.6)
 
-    ax2.fill_between(seed_grid * 100, b_lo, b_hi, color=AMBER, alpha=0.15)
-    ax2.plot(seed_grid * 100, b_mean, color=AMBER, linewidth=2.8)
+    ax2.fill_between(seed_grid * 100, b_lo, b_hi, color=AMBER, alpha=0.15,
+                     label=f"range across {runs} runs")
+    ax2.plot(seed_grid * 100, b_mean, color=AMBER, linewidth=2.8,
+             label=f"average of {runs} runs")
     ax2.axvline(3.5, color=RED, linewidth=1.4, linestyle="--")
     ax2.text(3.7, 8, "3.5%", color=RED, fontsize=12)
     ax2.set_xlabel("size of the committed minority  (% of network)")
@@ -266,6 +271,7 @@ def render_summary(path, runs=40, n=140):
     ax2.set_ylim(0, 103)
     ax2.set_title("So does the size of the committed few", loc="left",
                   fontsize=13, fontweight="bold")
+    ax2.legend(loc="lower right", fontsize=9, framealpha=0, labelcolor=INK)
     ax2.grid(True, alpha=0.25, linewidth=0.6)
 
     fig.suptitle(f"Same model, {runs} runs per point: small changes near the edge flip the whole outcome",
