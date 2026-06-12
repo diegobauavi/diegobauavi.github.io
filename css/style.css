@@ -130,6 +130,16 @@ a:hover { text-decoration: underline; }
   align-items: center;
   gap: 0.4rem;
 }
+.orcid-badge {
+  background: #a6ce39;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.7rem;
+  font-style: italic;
+  border-radius: 3px;
+  padding: 0.05rem 0.2rem;
+  line-height: 1;
+}
 
 /* ---------- Language + theme controls ---------- */
 .lang-en, .lang-es { display: inline; }
