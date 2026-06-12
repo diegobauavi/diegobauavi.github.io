@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compounding and inequality — Diego Bautista Avilés</title>
+  <meta name="description" content="A small model of how extreme inequality emerges from compounding alone, even when advantages are fair and temporary." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="back-link" href="index.html#personal">← Diego Bautista Avilés</a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Toggle dark / light mode">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <main id="main" class="container article">
+
+    <p class="eyebrow">Personal project</p>
+    <h1 class="article-title">Compounding and inequality</h1>
+    <p class="article-sub">A very cheap model, and the thing it kept telling me.</p>
+
+    <p>
+      A while ago I got stuck on a simple question. If everyone starts with the same
+      amount of money, and the only thing that separates people is a bit of luck or
+      skill that gets handed out fresh every few years, how unequal can a society
+      really become? The honest answer surprised me. Very unequal, and fast.
+    </p>
+    <p>
+      The story we usually tell is that wealth tracks merit. Work hard, do well, end
+      up ahead. I wanted to see what the arithmetic says when you strip almost
+      everything else away and keep only one ingredient: money grows in proportion to
+      how much you already have.
+    </p>
+
+    <h2>The setup fits on a napkin</h2>
+    <p>
+      A thousand people, everyone holding one coin. Each round a person's wealth is
+      multiplied by (1 + t), where t is their return for that round, drawn from a
+      normal distribution centered on a small positive number. Most people grow a
+      little, some grow a lot, a few shrink. Every five rounds I throw all the values
+      of t back in a hat and deal them out again, so nobody keeps a permanent edge.
+    </p>
+    <p>
+      That last part is the one I care about. It is my crude way of saying that talent
+      and luck reset between generations. The person who drew well this decade does not
+      get to keep that draw forever. If meritocracy were the whole story, resetting the
+      advantage so often should keep things reasonably fair.
+    </p>
+
+    <div class="formula" role="img" aria-label="Wealth at the next round equals current wealth times one plus t, where t is drawn from a normal distribution with mean mu and spread sigma, and t is reshuffled every five rounds.">
+      W<sub>n+1</sub> = W<sub>n</sub> · (1 + t),
+      &nbsp;&nbsp; t ~ Normal(μ, σ),
+      &nbsp;&nbsp; reshuffled every 5 rounds
+    </div>
+
+    <h2>Watch it run</h2>
+    <figure class="media">
+      <video controls autoplay muted loop playsinline poster="assets/inequality/poster.png">
+        <source src="assets/inequality/wealth_animation.mp4" type="video/mp4" />
+        Your browser does not support the video tag. You can view the still frame above.
+      </video>
+      <figcaption>
+        One run of the model over 120 rounds. Top: where everyone sits on a log wealth
+        axis, so each step to the right means ten times richer. Bottom left: the Gini
+        coefficient. Bottom right: how well current skill predicts current wealth.
+      </figcaption>
+    </figure>
+
+    <p>
+      The top panel starts as a single spike, everyone equal, and then it spreads and
+      keeps spreading. By the end the distance between the poorest and the richest is
+      several orders of magnitude, and remember that axis is already logarithmic.
+    </p>
+    <p>
+      The bottom left tracks the Gini coefficient, the usual one number summary of
+      inequality. Zero means everyone holds the same, one means a single person holds
+      everything. It climbs past 0.8 and keeps going. For comparison, the most unequal
+      countries on the planet sit around 0.6.
+    </p>
+    <p>
+      The bottom right is the panel I find hardest to argue with. It asks whether your
+      skill this round explains your wealth. After every reshuffle it jumps back up,
+      because the fresh draw briefly matters, and then it falls almost to the floor.
+      The people at the top are rarely the ones with the best current skill. They are
+      the ones who caught a good draw early and let compounding carry it.
+    </p>
+
+    <h2>It happens every time</h2>
+    <p>
+      One run could be a fluke, so I ran sixty of them with different random seeds and
+      averaged the result. The shaded bands show the full spread across runs. Inequality
+      climbs in all of them, the skill signal decays in all of them, and the final
+      Lorenz curve bows away from the line of equality in a way that should feel
+      familiar to anyone who has seen real wealth data.
+    </p>
+    <figure class="media">
+      <img src="assets/inequality/summary.png" alt="Three panels across sixty runs: the Gini coefficient rising toward 0.9 in every run, the skill-to-wealth correlation decaying toward zero, and a Lorenz curve bowing far below the line of equality with a Gini of 0.88." />
+      <figcaption>Sixty runs of the same rules. The pattern is the rule, not the exception.</figcaption>
+    </figure>
+
+    <h2>What I take from it</h2>
+    <p>
+      I am not claiming this proves anything about the real world on its own. It is a
+      toy, and a cheap one. Real economies have wages, taxes, debt, inheritance,
+      crashes, and a hundred things this model leaves out. What it does well is smaller
+      and sharper. It shows that you can manufacture extreme inequality without any of
+      the usual villains. No corruption, no cheating, no dynasties, no unfair head
+      start. Equal beginnings, fair and temporary advantages, and a single rule about
+      compounding are enough to do the whole job.
+    </p>
+    <p>
+      So when someone tells me the people at the top must have earned their place, I now
+      keep a small and stubborn counterexample in my pocket. In this little world they
+      did nothing wrong and nothing special. The mathematics of growth handed them the
+      lead, and the same mathematics kept them there. If we want a different ending,
+      something has to push back on the compounding on purpose. How much pushing, and
+      what kind, is the question I want to carry into the next version of the model.
+    </p>
+
+    <p class="code-note">
+      The whole thing is one Python file. You can read the model, the animation, and
+      the figures in
+      <a href="https://github.com/diegobauavi/diegobauavi.github.io/blob/main/projects/inequality/inequality_model.py" target="_blank" rel="noopener">inequality_model.py</a>.
+    </p>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year">2026</span> Diego Bautista Avilés</p>
+      <p><a href="index.html#personal">← Back to personal</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

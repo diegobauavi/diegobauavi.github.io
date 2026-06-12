@@ -335,6 +335,122 @@ a.project-card:hover {
   opacity: 0.85;
 }
 
+/* ---------- Feature card with thumbnail ---------- */
+.card-thumb {
+  display: block;
+  width: calc(100% + 3rem);
+  margin: -1.5rem -1.5rem 1.1rem;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid var(--border);
+  aspect-ratio: 13 / 7;
+  object-fit: cover;
+  background: #14151a;
+}
+
+/* ---------- Project page: top bar ---------- */
+.topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.5rem;
+}
+.back-link {
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+.topbar .theme-toggle { position: static; }
+
+/* ---------- Project page: article ---------- */
+.article {
+  max-width: 720px;
+  padding-top: 2.5rem;
+  padding-bottom: 1rem;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 0.6rem;
+}
+.article-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.1;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.01em;
+}
+.article-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--text-soft);
+  margin: 0 0 2rem;
+}
+.article h2 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--text);
+  border: none;
+  margin: 2.5rem 0 0.75rem;
+  padding: 0;
+}
+.article p {
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: var(--text-soft);
+  margin: 0 0 1.1rem;
+}
+
+.formula {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: 1.1rem 1.3rem;
+  margin: 1.5rem 0 2rem;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 1.2rem;
+  color: var(--text);
+  text-align: center;
+}
+.formula sub { font-size: 0.7em; }
+
+.media {
+  margin: 1.75rem 0 2rem;
+}
+.media video,
+.media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #14151a;
+}
+.media figcaption {
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
+  color: var(--text-faint);
+  line-height: 1.55;
+}
+
+.code-note {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.98rem !important;
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   background: var(--surface);
