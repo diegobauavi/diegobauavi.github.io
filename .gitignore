@@ -1,9 +1,5 @@
 .DS_Store
 
-# Original scratch folder for the inequality project (venv + early drafts).
-# The clean version lives in projects/inequality/.
-Desigualdad copy/
-
 # Python
 __pycache__/
 *.pyc

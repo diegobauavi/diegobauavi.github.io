@@ -167,6 +167,15 @@ def render_animation(model, path, poster_path, fps=24, n_frames=220):
     x_max = max(1.0, float(np.percentile(log_all, 99.5)) * 1.05)
     bins = np.linspace(0, x_max, 46)
 
+    # Fixed y-axis for readability: size it to the spread regime so bars do not
+    # jump frame to frame. The first few highly concentrated frames clip at the
+    # top, which reads fine as "everyone starts piled up together".
+    spread_peak = 0
+    for t in range(8, model.steps + 1):
+        counts, _ = np.histogram(np.log10(model.wealth_history[t] + 1), bins=bins)
+        spread_peak = max(spread_peak, int(counts.max()))
+    y_max = spread_peak * 1.12
+
     def draw(i):
         t = frames[i]
         for ax in (ax_dist, ax_gini, ax_corr):
@@ -180,6 +189,7 @@ def render_animation(model, path, poster_path, fps=24, n_frames=220):
         ax_dist.hist(logw, bins=bins, color=AMBER, alpha=0.9,
                      edgecolor=BG, linewidth=0.6)
         ax_dist.set_xlim(0, x_max)
+        ax_dist.set_ylim(0, y_max)
         ax_dist.set_xlabel("wealth (log scale)")
         ax_dist.set_ylabel("people")
         ax_dist.set_title("Where the wealth sits", loc="left",

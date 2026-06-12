@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How many people does it take to move the world? — Diego Bautista Avilés</title>
+  <meta name="description" content="Granovetter's threshold model on a small-world network, and the social tipping points hiding inside it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="back-link" href="index.html#personal">← Diego Bautista Avilés</a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Toggle dark / light mode">
+        <span class="theme-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <main id="main" class="container article">
+
+    <p class="eyebrow">Personal project</p>
+    <h1 class="article-title">How many people does it take to move the world?</h1>
+    <p class="article-sub">A threshold model, and the tipping points hiding in it.</p>
+
+    <p>
+      Here is a question I keep coming back to. When a movement, a fashion, a protest,
+      or a rumor sweeps through a group of people, how much of it is the message itself
+      and how much is just the structure of who listens to whom? I wanted a setup simple
+      enough that I could watch the gears turn.
+    </p>
+    <p>
+      Mark Granovetter wrote down a clean version of this in the seventies. Give every
+      person a threshold, the share of the people around them who have to act before they
+      will act too. Some people move on almost no signal. Others hold out until nearly
+      everyone they know has already moved. Start with a small committed group, then let
+      everyone else look around and decide, round after round.
+    </p>
+
+    <h2>The setup</h2>
+    <p>
+      I put a hundred and forty people on a small-world network, the kind where most of
+      your ties are local but a few jump clear across the graph. Each person gets a
+      threshold drawn from a normal distribution. A small committed minority starts
+      active. On every round, anyone who sees enough active neighbors flips, and once
+      someone flips they stay.
+    </p>
+
+    <div class="formula" role="img" aria-label="Person i acts when the share of their active neighbors is greater than or equal to that person's threshold.">
+      person <em>i</em> acts when&nbsp;&nbsp;
+      (active neighbors / all neighbors) ≥ threshold<sub>i</sub>
+    </div>
+
+    <h2>Watch one run</h2>
+    <figure class="media">
+      <video controls autoplay muted loop playsinline poster="assets/cascades/poster.png">
+        <source src="assets/cascades/cascade_animation.mp4" type="video/mp4" />
+        Your browser does not support the video tag. You can view the still frame above.
+      </video>
+      <figcaption>
+        One cascade over nine rounds. Blue dots are people who have not moved yet, shaded
+        by how stubborn they are. Amber dots have moved. The line below tracks the share
+        of the network that has joined.
+      </figcaption>
+    </figure>
+
+    <p>
+      Nothing much happens for a moment, then a few easy to move people flip, which pushes
+      their neighbors over the line, which pushes the next ring, and the whole thing tips
+      over in a handful of rounds. The curve at the bottom has the shape you would expect
+      from that. A slow start, a steep middle, a plateau.
+    </p>
+
+    <h2>The tipping points</h2>
+    <p>
+      The part I find genuinely surprising shows up when you run the model many times and
+      turn one knob at a time.
+    </p>
+    <figure class="media">
+      <img src="assets/cascades/tipping_points.png" alt="Two panels. Left: final adoption stays near 100% as the average threshold rises, then drops off a cliff past about 30%. Right: final adoption rises through the 3.5% committed-minority mark and saturates near 100% by roughly 8%." />
+      <figcaption>Each point averages forty runs. Left: the effect of how stubborn people are on average. Right: the effect of how large the committed minority is at the start.</figcaption>
+    </figure>
+    <p>
+      On the left, average stubbornness barely matters until it crosses a line, and then
+      the outcome falls off a cliff. A population that is a little too cautious on average
+      ends up going almost nowhere, even though no single person is behaving unreasonably.
+      On the right, the same kind of edge appears for the size of the starting group. Below
+      a few percent the push fizzles. Above it, the whole network ends up moving. The
+      crossover sits close to a figure that keeps turning up in studies of real campaigns,
+      the so-called 3.5% rule, the rough share of a population that seems to be enough to
+      force large scale change.
+    </p>
+
+    <h2>What I take from it</h2>
+    <p>
+      This is a toy, same caveat as always. Real people do not carry one tidy number in
+      their heads, and real networks are messier than anything I drew here. The lesson
+      still travels. Big collective shifts do not need most people to be convinced. They
+      need a structure that lets a committed few reach the easy to move, who then reach
+      everyone else. The same arithmetic that makes change feel hopeless one day can make
+      it feel inevitable the next, and the gap between those two days can be very small.
+    </p>
+    <p>
+      It also gives me a gentler way to read history. The people who moved first were not
+      always braver or smarter. They were the ones with low thresholds and the right
+      neighbors. The rest were waiting for a signal that, for a long while, simply had not
+      arrived.
+    </p>
+
+    <p class="code-note">
+      The whole thing is one Python file. You can read the model, the animation, and the
+      tipping curves in
+      <a href="https://github.com/diegobauavi/diegobauavi.github.io/blob/main/projects/cascades/cascade_model.py" target="_blank" rel="noopener">cascade_model.py</a>.
+    </p>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year">2026</span> Diego Bautista Avilés</p>
+      <p><a href="index.html#personal">← Back to personal</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
