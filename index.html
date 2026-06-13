@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="assets/vendor/jsvectormap/jsvectormap.min.css" />
   <!-- Set theme and language before paint to avoid a flash -->
   <script>
     (function () {
@@ -87,6 +88,7 @@
         <a href="#personal-about"><span class="lang-en">Beyond Physics</span><span class="lang-es">Más allá de la física</span></a>
         <a href="#writing"><span class="lang-en">Writing</span><span class="lang-es">Escritos</span></a>
         <a href="#projects"><span class="lang-en">Studies &amp; Reflections</span><span class="lang-es">Estudios y reflexiones</span></a>
+        <a href="#places"><span class="lang-en">Places</span><span class="lang-es">Lugares</span></a>
       </div>
     </div>
   </nav>
@@ -468,6 +470,23 @@
         </div>
       </section>
 
+      <section id="places" aria-labelledby="places-heading">
+        <h2 id="places-heading"><span class="lang-en">Places</span><span class="lang-es">Lugares</span></h2>
+        <p class="lede lang-en">
+          A map of the countries I have been lucky enough to visit, for research, for
+          conferences, and for the sheer pleasure of it. <strong>21</strong> so far.
+        </p>
+        <p class="lede lang-es">
+          Un mapa de los países que he tenido la suerte de visitar, por investigación, por
+          congresos y por el puro gusto de hacerlo. <strong>21</strong> hasta ahora.
+        </p>
+        <div id="travel-map" class="travel-map"></div>
+        <p class="places-list">
+          <span class="lang-en">Chile, Argentina, Mexico, Brazil, United States, Canada, Spain, France, United Kingdom, Italy, Switzerland, Netherlands, Austria, Slovenia, Slovakia, Tunisia, Hungary, Turkey, Germany, Croatia, Montenegro.</span>
+          <span class="lang-es">Chile, Argentina, México, Brasil, Estados Unidos, Canadá, España, Francia, Reino Unido, Italia, Suiza, Países Bajos, Austria, Eslovenia, Eslovaquia, Túnez, Hungría, Turquía, Alemania, Croacia, Montenegro.</span>
+        </p>
+      </section>
+
     </div><!-- /view-personal -->
 
   </main>
@@ -480,5 +499,12 @@
   </footer>
 
   <script src="js/main.js" defer></script>
+  <script src="assets/vendor/jsvectormap/jsvectormap.min.js" defer></script>
+  <script src="assets/vendor/jsvectormap/world.js" defer></script>
+  <script src="js/map.js" defer></script>
+
+  <!-- Privacy-friendly analytics (GoatCounter). See note in chat: register the
+       subdomain "diegobauavi" at goatcounter.com for this to start counting. -->
+  <script data-goatcounter="https://diegobauavi.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

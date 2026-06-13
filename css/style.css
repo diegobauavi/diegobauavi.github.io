@@ -368,6 +368,42 @@ h3 {
   color: var(--text-soft);
 }
 
+/* ---------- Places: travel map ---------- */
+.travel-map {
+  width: 100%;
+  height: 460px;
+  margin: 1.5rem 0 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.travel-map .jvm-zoom-btn {
+  background: var(--accent);
+  border-radius: 4px;
+  padding: 4px;
+  width: 22px;
+  height: 22px;
+  line-height: 14px;
+}
+.travel-map .jvm-tooltip {
+  background: var(--accent);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  border-radius: 6px;
+  padding: 0.3rem 0.55rem;
+}
+.places-list {
+  font-size: 0.92rem;
+  color: var(--text-faint);
+  line-height: 1.6;
+  margin: 0.5rem 0 0;
+}
+
+@media (max-width: 640px) {
+  .travel-map { height: 320px; }
+}
+
 /* ---------- Personal view: project cards ---------- */
 .card-grid {
   display: grid;
