@@ -10,22 +10,16 @@
     "NL", "AT", "SI", "SK", "TN", "HU", "TR", "DE", "HR", "ME", "CZ"
   ];
 
-  var VISITED_FILL = "#e8a13a"; // amber, reads on both light and dark themes
-
-  function isDark() {
-    return document.documentElement.getAttribute("data-theme") === "dark";
-  }
-
-  function isVisible() {
-    return el.offsetParent !== null && el.clientWidth > 0;
-  }
+  // Theme-neutral palette: these read well on both the light and dark
+  // backgrounds, so the map never needs to be rebuilt when the theme changes.
+  var VISITED_FILL = "#e8a13a"; // amber
+  var REST_FILL = "#b4bac4";    // un-visited countries
+  var BORDER = "#8b92a0";       // separates countries
 
   var map = null;
 
   function build() {
-    if (map) { map.destroy(); map = null; }
-    var rest = isDark() ? "#39404e" : "#d4d8e0";   // un-visited fill
-    var line = isDark() ? "#14151a" : "#ffffff";   // borders separate countries
+    if (map) return;
     map = new jsVectorMap({
       selector: "#travel-map",
       map: "world",
@@ -34,7 +28,7 @@
       regionsSelectable: false,
       backgroundColor: "transparent",
       regionStyle: {
-        initial: { fill: rest, stroke: line, strokeWidth: 0.4, fillOpacity: 1 },
+        initial: { fill: REST_FILL, stroke: BORDER, strokeWidth: 0.4, fillOpacity: 1 },
         hover: { fillOpacity: 0.7 },
         selected: { fill: VISITED_FILL },
         selectedHover: { fillOpacity: 0.8 }
@@ -48,24 +42,11 @@
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;
-      if (!map) {
-        build();
-      } else if (map.updateSize) {
-        map.updateSize();
-      }
+      if (!map) build();
+      else if (map.updateSize) map.updateSize();
     });
   });
   io.observe(el);
-
-  // Rebuild on theme change so un-visited countries match the palette.
-  new MutationObserver(function (mutations) {
-    mutations.forEach(function (m) {
-      if (m.attributeName === "data-theme" && map) {
-        build();
-        if (isVisible() && map.updateSize) map.updateSize();
-      }
-    });
-  }).observe(document.documentElement, { attributes: true });
 
   window.addEventListener("resize", function () {
     if (map && map.updateSize) map.updateSize();
