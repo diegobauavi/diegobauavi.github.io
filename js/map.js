@@ -7,7 +7,7 @@
   // Countries visited (ISO 3166-1 alpha-2).
   var VISITED = [
     "CL", "AR", "MX", "BR", "US", "CA", "ES", "FR", "GB", "IT", "CH",
-    "NL", "AT", "SI", "SK", "TN", "HU", "TR", "DE", "HR", "ME"
+    "NL", "AT", "SI", "SK", "TN", "HU", "TR", "DE", "HR", "ME", "CZ"
   ];
 
   var VISITED_FILL = "#e8a13a"; // amber, reads on both light and dark themes
