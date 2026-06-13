@@ -11,8 +11,6 @@
   ];
 
   var VISITED_FILL = "#e8a13a"; // amber, reads on both light and dark themes
-  var visitedValues = {};
-  VISITED.forEach(function (code) { visitedValues[code] = VISITED_FILL; });
 
   function isDark() {
     return document.documentElement.getAttribute("data-theme") === "dark";
@@ -37,12 +35,12 @@
       backgroundColor: "transparent",
       regionStyle: {
         initial: { fill: rest, stroke: line, strokeWidth: 0.4, fillOpacity: 1 },
-        hover: { fillOpacity: 0.7 }
-      },
-      series: {
-        regions: [{ attribute: "fill", values: visitedValues }]
+        hover: { fillOpacity: 0.7 },
+        selected: { fill: VISITED_FILL },
+        selectedHover: { fillOpacity: 0.8 }
       }
     });
+    if (map.setSelectedRegions) map.setSelectedRegions(VISITED);
   }
 
   // The map lives inside the (initially hidden) Personal panel, so build it the
