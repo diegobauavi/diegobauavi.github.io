@@ -446,6 +446,60 @@ a.project-card:hover {
   opacity: 0.85;
 }
 
+/* ---------- Personal view: books project ---------- */
+.books-progress {
+  font-size: 0.92rem;
+  color: var(--text-faint);
+  margin: 0.75rem 0 1.25rem;
+}
+.books-progress strong { color: var(--accent); }
+
+.book-shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.book-country {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+.book-country h3 { margin: 0 0 0.75rem; }
+
+.book-pair {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--border);
+}
+.book--read { border-left-color: var(--accent); }
+
+.book-title { font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
+.book-author { color: var(--text-soft); font-size: 0.92rem; }
+.book-review { font-weight: 600; font-size: 0.88rem; }
+.book-status { color: var(--text-faint); font-size: 0.85rem; }
+
+.books-empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 1.5rem;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  color: var(--text-faint);
+  text-align: center;
+}
+
 /* ---------- Feature card with thumbnail ---------- */
 .card-thumb {
   display: block;
